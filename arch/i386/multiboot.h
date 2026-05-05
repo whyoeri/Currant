@@ -3,7 +3,7 @@
 
 #include "lib/other/types.h"
 
-typedef struct{
+typedef struct __attribute__((packed)){
     uint32_t flags;
     uint32_t mem_lower;
     uint32_t mem_upper;
@@ -28,14 +28,14 @@ typedef struct{
     uint16_t vbe_interface_seg;
     uint16_t vbe_interface_off;
     uint16_t vbe_interface_len;
-} __attribute__((packed)) multiboot_info_t;
+} multiboot_info_t;
 
-typedef struct{
+typedef struct __attribute__((packed)){
     uint32_t size;
     uint64_t addr;
     uint64_t len;
     uint32_t type;
-} __attribute__((packed)) mmap_multiboot_info_t;
+} mmap_multiboot_info_t;
 
 uint32_t get_max_address(multiboot_info_t* mbi);
 

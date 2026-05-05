@@ -16,14 +16,15 @@
 #define PAGE_AVL_2 (1 << 10)
 #define PAGE_AVL_3 (1 << 11)
 #define PAGE_FRAME 0xFFFFF000
+#define COUNT_ENTRIES_PER_PAGE 1024
 
-typedef struct{
-    uint32_t pe[1024];
-} page_table __attribute__((aligned(4096)));
+typedef struct __attribute__((aligned(4096))){
+    uint32_t pe[COUNT_ENTRIES_PER_PAGE];
+} page_table_t;
 
-typedef struct{
-    uint32_t pe[1024];
-} page_directory __attribute__((aligned(4096)));
+typedef struct  __attribute__((aligned(4096))){
+    uint32_t pe[COUNT_ENTRIES_PER_PAGE];
+} page_directory_t;
 
 void init_paging(void);
 void load_page_directory(volatile uint32_t* directory);

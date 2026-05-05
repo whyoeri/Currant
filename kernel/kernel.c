@@ -22,7 +22,7 @@ void kmain(multiboot_info_t* mbi, uint32_t signature_grub){
     init_keyboard();
     __asm__ volatile("sti");
 
-    while(1) {
+    while(true) {
         input_processing_terminal();
         __asm__ volatile("hlt");
     }

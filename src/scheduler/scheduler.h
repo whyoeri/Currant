@@ -4,7 +4,7 @@
 #include "lib/other/types.h"
 
 // task registers
-typedef struct{
+typedef struct __attribute__((packed)){
     uint32_t edi;
     uint32_t esi;
     uint32_t ebp;
@@ -15,7 +15,7 @@ typedef struct{
     uint32_t eax;
     uint32_t eip;
     uint32_t eflags;
-} __attribute__((packed)) scheduler_registers_t;
+} scheduler_registers_t;
 
 // task states
 typedef enum{

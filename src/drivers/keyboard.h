@@ -6,9 +6,6 @@
 
 #define KEYBOARD_BUFFER_SIZE 256
 
-extern unsigned char kbd_us[128];
-extern unsigned char kbd_us_upper[128]; 
-
 void init_keyboard(void);
 void handler_keyboard(void);
 int read_keyboard(void);

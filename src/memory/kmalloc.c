@@ -5,16 +5,21 @@
 #include "src/memory/pmm.h"
 #include "lib/string/string.h"
 
+#define START_VIRTUAL_HEAP_ADDRESS 0xD0000000 
+#define PAGE_SIZE 4096
+#define ALIG 4
+#define MIN_BLOCK_PAYLOAD 4
+
 static kmallfree* head = NULL;
-static uint32_t head_top = 0xD0000000; 
+static uint32_t head_top = START_VIRTUAL_HEAP_ADDRESS; 
 
 void* kmalloc(size_t size){
     if(0 == size){return NULL;}
-    size = aligment(size, 4);
+    size = aligment(size, ALIG);
     kmallfree* current = head;
     while(NULL != current){
         if(current->is_free && current->size >= size){
-            if(current->size >= size + sizeof(kmallfree) + 4){
+            if(current->size >= size + sizeof(kmallfree) + MIN_BLOCK_PAYLOAD){
                 kmallfree* next_block = (kmallfree*)((uint8_t*)current + sizeof(kmallfree) + size);
                 next_block->size = current->size - size - sizeof(kmallfree);
                 next_block->is_free = 1;
@@ -38,20 +43,16 @@ void* kmalloc(size_t size){
     vmm_map_page(head_top, phys, PAGE_PRESENT | PAGE_RW);
 
     kmallfree* new = (kmallfree*)head_top;
-    new->size = 4096 - sizeof(kmallfree);
+    new->size = PAGE_SIZE - sizeof(kmallfree);
     new->is_free = 1;
     new->next = NULL;
 
-    if(NULL == head){
-        head = new;
-    }
-    else{
-        current->next = new;
-    }
+    if(NULL == head){head = new;}
+    else{current->next = new;}
 
-    head_top += 4096;
+    head_top += PAGE_SIZE;
 
-    if(new->size >= sizeof(kmallfree) + size + 4){
+    if(new->size >= sizeof(kmallfree) + size + MIN_BLOCK_PAYLOAD){
         kmallfree* next_block = (kmallfree*)((uint8_t*)new + sizeof(kmallfree) + size);
         next_block->size = new->size - size - sizeof(kmallfree);
         next_block->is_free = 1;

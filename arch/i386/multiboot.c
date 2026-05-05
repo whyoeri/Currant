@@ -1,7 +1,9 @@
 #include "multiboot.h"
 
+#define MULTIBOOT_INFO_MEMORY_MAP (1 << 6)
+
 uint32_t get_max_address(multiboot_info_t* mbi){
-    if(!(mbi->flags & (1 << 6))){return 0;}
+    if(!(mbi->flags & MULTIBOOT_INFO_MEMORY_MAP)){return 0;}
 
     mmap_multiboot_info_t* mmap_mbi = (mmap_multiboot_info_t*)mbi->mmap_addr;
 

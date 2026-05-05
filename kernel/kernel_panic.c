@@ -3,14 +3,15 @@
 #include "lib/statistics/statistics.h"
 #include "src/terminal/terminal.h"
 #include "src/drivers/vga.h"
+#include "lib/other/types.h"
 
-static volatile int in_handler = 0;
+static volatile bool in_handler = false;
 
 void kernel_panic(registers_t* rg){
     asm volatile("cli");
 
     if(in_handler){__asm__ volatile("hlt");}
-    in_handler = 1;
+    in_handler = true;
 
     set_theme_terminal(BLACK_COLOR, RED_COLOR);
 

@@ -3,18 +3,18 @@
 
 #include "lib/other/types.h"
 
-typedef struct{
+typedef struct __attribute__((packed)){
     uint16_t base_lo;
     uint16_t sel_code;
     uint8_t zero_bit;
     uint8_t type_attr;
     uint16_t base_hi;
-} __attribute__((packed)) idt_entry_t;
+} idt_entry_t;
 
-typedef struct{
+typedef struct __attribute__((packed)){
     uint16_t limit;
     uint32_t base;
-} __attribute__((packed)) idt_ptr_t;
+} idt_ptr_t;
 
 void remap_pic(void);
 void idt_set_gate(int num, uint32_t base, uint16_t sel_code, uint8_t type_attr);

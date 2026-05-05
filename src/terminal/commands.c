@@ -65,9 +65,8 @@ void kitty(void){
 // snow help information
 void help(void){
     print_str("Commands:\n");
-    print_str("black  white  red\n");
-    print_str("green  blue  panic\n");
-    print_str("help  kitty\n");
+    print_str("black  white  red  green\n");
+    print_str("blue  panic  help  kitty\n");
     print_str("Creator: whyoeri\n");
     print_str("More information: https://github.com/whyoeri/Currant \n");
 }

@@ -98,7 +98,7 @@ void exit_task(void){
     current_task->state_task = TASK_ZOMBIE;
     loop_schedule();
 
-    while(1){__asm__ volatile("hlt");}
+    while(true){__asm__ volatile("hlt");}
 }
 
 void update_sleep_tasks(uint32_t current_timer_tisk){
