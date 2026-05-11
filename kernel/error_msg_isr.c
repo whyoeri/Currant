@@ -14,7 +14,7 @@ const char* error_messages_isr[] = {
     "Invalid TSS", // 10
     "Segment Not Present", // 11
     "Stack-Segment Fault", // 12
-    "General Protection", // 13
+    "General Protection Fault", // 13
     "Page Fault", // 14
     "Unknown Interrupt", // 15
     "Coprocessor Fault", // 16

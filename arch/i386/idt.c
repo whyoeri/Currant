@@ -13,9 +13,10 @@
 #define PIC_MASK_TIMER_KBD 0xF8
 #define SELECTOR_KERNEL_CODE 0x08
 #define ACCESS_BYTE_KERNEL 0x8E
+#define ACCESS_BYTE_USER 0xEE
 
 extern void idt_load(uint32_t);
-static idt_entry_t idt[256];
+static idt_entry_t idt[256] __attribute__((aligned(16)));
 static idt_ptr_t iptr;
 
 void remap_pic(void){

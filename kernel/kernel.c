@@ -9,8 +9,10 @@
 #include "src/terminal/terminal.h"
 #include "lib/other/types.h"
 
+#define GRUB_MAGIC 0x2BADB002 
+
 void kmain(multiboot_info_t* mbi, uint32_t signature_grub){
-    if(0x2BADB002 != signature_grub){__asm__ volatile("hlt"); return;}
+    if(GRUB_MAGIC != signature_grub){__asm__ volatile("hlt"); return;}
     init_gdt();
     remap_pic();
     init_idt();
