@@ -18,9 +18,7 @@ terminalcommand_t tcommand[] = {
     {"clear", clear_screen},
     {"black", black_theme},
     {"white", white_theme},
-    {"green", green_theme},
     {"red", red_theme},
-    {"blue", blue_theme}
 };
 
 #define COMMAND_COUNT (sizeof(tcommand) / sizeof(terminalcommand_t))
@@ -89,15 +87,5 @@ void white_theme(void){
 
 void red_theme(void){
     set_theme_terminal(BLACK_COLOR, RED_COLOR);
-    clear_screen();
-}
-
-void green_theme(void){
-    set_theme_terminal(BLACK_COLOR, GREEN_COLOR);
-    clear_screen();
-}
-
-void blue_theme(void){
-    set_theme_terminal(BLACK_COLOR, BLUE_COLOR);
     clear_screen();
 }
