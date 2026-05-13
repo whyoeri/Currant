@@ -25,8 +25,9 @@ OBJ = $(BUILD_DIR)/boot.o \
 	$(BUILD_DIR)/kmalloc.o \
 	$(BUILD_DIR)/timer.o \
 	$(BUILD_DIR)/switch_context.o \
-	$(BUILD_DIR)/scheduler.o \
+	$(BUILD_DIR)/jump_user_ring.o \
 	$(BUILD_DIR)/tss.o \
+	$(BUILD_DIR)/scheduler.o \
     $(BUILD_DIR)/vga.o \
     $(BUILD_DIR)/keyboard.o \
 	$(BUILD_DIR)/terminal.o \

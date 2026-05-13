@@ -10,7 +10,12 @@
 #include "lib/other/types.h"
 
 #define GRUB_MAGIC 0x2BADB002 
-
+//////////////////////////
+#include "src/terminal/commands.h"
+void test(void){
+    print_str("dadsasdasddasdasda");
+}
+///////////////////////////
 void kmain(multiboot_info_t* mbi, uint32_t signature_grub){
     if(GRUB_MAGIC != signature_grub){__asm__ volatile("hlt"); return;}
     init_gdt();
@@ -23,6 +28,10 @@ void kmain(multiboot_info_t* mbi, uint32_t signature_grub){
     init_terminal();
     init_keyboard();
     __asm__ volatile("sti");
+
+    print_str("start new_task\n");
+    task_t* new_task = create_task(test);
+    print_str("end new_task\n");
 
     while(true) {
         input_processing_terminal();

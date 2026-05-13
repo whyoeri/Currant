@@ -15,7 +15,7 @@ void kernel_panic(registers_t* rg){
 
     set_theme_terminal(BLACK_COLOR, RED_COLOR);
 
-    clear_screen();
+    //clear_screen();
     print_str("KERNEL PANIC!\n");
     print_str("A fatal exception has occurred\n");
     print_str("System halted to prevent damage\n");

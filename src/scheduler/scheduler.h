@@ -3,7 +3,7 @@
 
 #include "lib/other/types.h"
 
-// task registers
+// Task Registers
 typedef struct __attribute__((packed)){
     uint32_t edi;
     uint32_t esi;
@@ -17,7 +17,7 @@ typedef struct __attribute__((packed)){
     uint32_t eflags;
 } scheduler_registers_t;
 
-// task states
+// Task States
 typedef enum{
     TASK_READY,
     TASK_RUNNING,
@@ -25,14 +25,16 @@ typedef enum{
     TASK_ZOMBIE
 } task_state_t;
 
-// TCB(Task Control Block)
+// Task Control Block (TCB)
 typedef struct task{
-    uint32_t pid_task;
-    uint32_t esp;
-    uint32_t wake_tick;
     task_state_t state_task;
     struct task* next_task;
     uint32_t* stack_base;
+    void* entry_point;
+    uint32_t pid_task;
+    uint32_t kernel_esp;
+    uint32_t user_esp;
+    uint32_t wake_tick;
 } task_t;
 
 extern void switch_context(uint32_t* old_esp, uint32_t new_esp);

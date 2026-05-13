@@ -19,10 +19,10 @@ void init_paging(void){
     }
     
     for(int i = 0; i < COUNT_ENTRIES_PER_PAGE; i++){
-        first_pt->pe[i] = (i * SIZE_TABLE) | PAGE_PRESENT | PAGE_RW;
+        first_pt->pe[i] = (i * SIZE_TABLE) | PAGE_PRESENT | PAGE_RW | PAGE_US;
     }
     
-    kernel_pd->pe[KERNEL_PD_FIRST_INDEX] = ((uint32_t)first_pt) | PAGE_PRESENT | PAGE_RW;
+    kernel_pd->pe[KERNEL_PD_FIRST_INDEX] = ((uint32_t)first_pt) | PAGE_PRESENT | PAGE_RW | PAGE_US;
     kernel_pd->pe[RECURSIVE_MAPPING_INDEX] = ((uint32_t)kernel_pd) | PAGE_PRESENT | PAGE_RW;
 
     load_page_directory((uint32_t*)kernel_pd);

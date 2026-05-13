@@ -5,8 +5,9 @@ section .multiboot
     dd -(0x1BADB002 + 0x03)
 section .stack
     align 4096
+    global stack_top
 stack_bottom:
-    resb 65536
+    resb 16384 ; 16 kb
 stack_top:
 section .text
     global _start
